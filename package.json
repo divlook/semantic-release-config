@@ -1,17 +1,21 @@
 {
   "name": "semantic-release",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "release:dry-run": "pnpm run release -- --dry-run",
-    "release": "semantic-release"
+    "release:dry-run": "semantic-release --dry-run",
+    "release": "semantic-release",
+    "genconfig": "ts-node genconfig.ts"
   },
   "dependencies": {
     "@semantic-release/changelog": "^6.0.0",
-    "@semantic-release/commit-analyzer": "^9.0.1",
     "@semantic-release/git": "^10.0.0",
-    "@semantic-release/npm": "^8.0.2",
-    "@semantic-release/release-notes-generator": "^10.0.2",
+    "conventional-changelog-conventionalcommits": "^4.6.1",
     "semantic-release": "^18.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.4",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.4.4"
   }
 }
