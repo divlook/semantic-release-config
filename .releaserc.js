@@ -17,7 +17,12 @@ module.exports = {
             },
         ],
         '@semantic-release/release-notes-generator',
-        '@semantic-release/changelog',
+        [
+            '@semantic-release/changelog',
+            {
+                preset: 'angular',
+            },
+        ],
         // '@semantic-release/github',
         [
             '@semantic-release/npm',
@@ -28,4 +33,5 @@ module.exports = {
         '@semantic-release/git',
     ],
     branches: 'main',
+    ci: false,
 }
