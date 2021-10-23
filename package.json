@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "release:dry-run": "pnpm run release --dry-run",
+    "release:dry-run": "pnpm run release -- --dry-run",
     "release": "semantic-release"
   },
   "dependencies": {
