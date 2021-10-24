@@ -1,3 +1,10 @@
+### [1.0.4](https://github.com/divlook/semantic-release-config/compare/v1.0.3...v1.0.4) (2021-10-24)
+
+
+### Code Refactoring
+
+* 배포 구성 변경 ([87bad7b](https://github.com/divlook/semantic-release-config/commit/87bad7baf249bbadc74abf9642ab8af3183dc754))
+
 ### [1.0.3](https://github.com/divlook/semantic-release-config/compare/v1.0.2...v1.0.3) (2021-10-24)
 
 
