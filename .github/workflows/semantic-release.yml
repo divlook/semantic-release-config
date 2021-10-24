@@ -44,8 +44,26 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: pnpm rm @divlook/semantic-release-config
 
-  publish-npm:
+  re-build:
     needs: release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6.17.2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "lts/*"
+          cache: "pnpm"
+      - uses: actions/cache@v2
+        with:
+          path: dist
+          key: ${{ github.sha }}
+      - run: pnpm build
+
+  publish-npm:
+    needs: re-build
     runs-on: ubuntu-latest
     continue-on-error: true
     steps:
@@ -63,7 +81,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
   publish-gpr:
-    needs: release
+    needs: re-build
     runs-on: ubuntu-latest
     continue-on-error: true
     permissions:
