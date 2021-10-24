@@ -1,6 +1,6 @@
 # README
 
-[semantic-release](https://github.com/semantic-release/semantic-release) shareable configuration for divlook
+[semantic-release](https://github.com/semantic-release/semantic-release) shareable configuration for me
 
 ## Plugins
 
@@ -41,3 +41,44 @@ create `.releaserc.yml`
 extends: ./dist/release.config.js
 branches: main
 ```
+
+### GitHub workflows
+
+```yml
+name: Semantic Release
+
+on:
+  # push:
+  #   branches: [main]
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "lts/*"
+      - name: install
+        run: |
+          npm install \
+            semantic-release \
+            @semantic-release/changelog \
+            @semantic-release/git \
+            @divlook/semantic-release-config \
+            --no-save
+      - name: create .releaserc.yml
+        run: |
+          cat <<EOT > .releaserc.yml
+          extends: "@divlook/semantic-release-config"
+          branches: "main"
+          EOT
+      - run: npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
+
+## References
+
+-   [@jedmao/semantic-release-npm-github-config](https://github.com/jedmao/semantic-release-npm-github-config)

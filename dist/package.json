@@ -2,7 +2,7 @@
   "name": "@divlook/semantic-release-config",
   "version": "1.0.0",
   "main": "release.config.js",
-  "description": "semantic-release shareable configuration for divlook",
+  "description": "semantic-release shareable configuration for me",
   "author": {
     "name": "divlook"
   },
