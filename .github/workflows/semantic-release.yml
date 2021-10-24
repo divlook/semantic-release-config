@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  release:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -15,7 +15,69 @@ jobs:
         with:
           node-version: "lts/*"
           cache: "pnpm"
+      - uses: actions/cache@v2
+        with:
+          path: dist
+          key: ${{ github.sha }}
+      - run: pnpm install
+      - run: pnpm build
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6.17.2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "lts/*"
+          cache: "pnpm"
+      - uses: actions/cache@v2
+        with:
+          path: dist
+          key: ${{ github.sha }}
       - run: pnpm install
       - run: pnpm exec semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  publish-npm:
+    needs: release
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "lts/*"
+          registry-url: https://registry.npmjs.org/
+      - uses: actions/cache@v2
+        with:
+          path: dist
+          key: ${{ github.sha }}
+      - run: npm publish dist --access public
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+
+  publish-gpr:
+    needs: release
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "lts/*"
+          registry-url: https://npm.pkg.github.com/
+      - uses: actions/cache@v2
+        with:
+          path: dist
+          key: ${{ github.sha }}
+      - run: npm publish dist
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
