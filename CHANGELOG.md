@@ -1,3 +1,16 @@
+### [1.0.3](https://github.com/divlook/semantic-release-config/compare/v1.0.2...v1.0.3) (2021-10-24)
+
+
+### Bug Fixes
+
+* 업데이트된 버전이 bundle에 적용되지 않는 버그 수정 ([7bd7ed0](https://github.com/divlook/semantic-release-config/commit/7bd7ed06ea560e43485b43fdf5e45c9ef98ea08b))
+
+
+### Continuous Integration
+
+* pnpm cache 추가 ([31672de](https://github.com/divlook/semantic-release-config/commit/31672deb2b806e3c0ea39f7124a48cbfba8686ab))
+* workflow 구조 단순하게 수정 ([a0cd33f](https://github.com/divlook/semantic-release-config/commit/a0cd33f598a5e2146c9ba7e6f500fe11c41ffa64))
+
 ### [1.0.2](https://github.com/divlook/semantic-release-config/compare/v1.0.1...v1.0.2) (2021-10-24)
 
 
