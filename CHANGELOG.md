@@ -1,3 +1,10 @@
+### [1.0.5](https://github.com/divlook/semantic-release-config/compare/v1.0.4...v1.0.5) (2021-10-24)
+
+
+### Continuous Integration
+
+* :bug: 배포할 때 git 최신정보 불러오지 못하는 버그 수정 ([13308a0](https://github.com/divlook/semantic-release-config/commit/13308a00a9b9a2cf1dac1ba2d462ae1e66372ed6))
+
 ### [1.0.4](https://github.com/divlook/semantic-release-config/compare/v1.0.3...v1.0.4) (2021-10-24)
 
 
