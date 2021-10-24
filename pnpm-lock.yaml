@@ -1,7 +1,6 @@
 lockfileVersion: 5.3
 
 specifiers:
-  '@divlook/semantic-release-config': link:dist
   '@semantic-release/changelog': ^6.0.0
   '@semantic-release/git': ^10.0.0
   '@types/node': ^16.11.4
@@ -11,7 +10,6 @@ specifiers:
   typescript: ^4.4.4
 
 dependencies:
-  '@divlook/semantic-release-config': link:dist
   '@semantic-release/changelog': 6.0.0_semantic-release@18.0.0
   '@semantic-release/git': 10.0.0_semantic-release@18.0.0
   conventional-changelog-conventionalcommits: 4.6.1

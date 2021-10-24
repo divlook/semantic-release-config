@@ -38,10 +38,11 @@ jobs:
         with:
           path: dist
           key: ${{ github.sha }}
-      - run: pnpm install
+      - run: pnpm add ./dist
       - run: pnpm exec semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: pnpm rm @divlook/semantic-release-config
 
   publish-npm:
     needs: release
