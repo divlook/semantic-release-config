@@ -41,3 +41,7 @@ create `.releaserc.yml`
 extends: ./dist/release.config.js
 branches: main
 ```
+
+## References
+
+-   [@jedmao/semantic-release-npm-github-config](https://github.com/jedmao/semantic-release-npm-github-config)
