@@ -12,12 +12,13 @@ jobs:
         with:
           path: dist
           key: ${{ github.sha }}
-      - uses: actions/setup-node@v2
-        with:
-          node-version: "lts/*"
       - uses: pnpm/action-setup@v2.0.1
         with:
           version: 6.17.2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "lts/*"
+          cache: "pnpm"
       - run: pnpm install
       - run: pnpm build
       - run: pnpm add ./dist
