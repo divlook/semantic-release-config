@@ -27,7 +27,12 @@
 ## Setup
 
 ```bash
-npm install semantic-release @semantic-release/changelog @semantic-release/git
+npm install \
+  semantic-release \
+  @semantic-release/changelog \
+  @semantic-release/git \
+  conventional-changelog-conventionalcommits \
+  @divlook/semantic-release-config
 
 # use gitlab
 npm install @semantic-release/gitlab
@@ -38,8 +43,8 @@ npm install @semantic-release/gitlab
 create `.releaserc.yml`
 
 ```yml
-extends: ./dist/release.config.js
-branches: main
+extends: "@divlook/semantic-release-config"
+branches: "main"
 ```
 
 ### GitHub workflows
@@ -66,6 +71,7 @@ jobs:
             semantic-release \
             @semantic-release/changelog \
             @semantic-release/git \
+            conventional-changelog-conventionalcommits \
             @divlook/semantic-release-config \
             --no-save
       - name: create .releaserc.yml
