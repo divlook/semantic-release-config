@@ -6,6 +6,14 @@
   "author": {
     "name": "divlook"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/divlook/semantic-release-config.git"
+  },
+  "bugs": {
+    "url": "https://github.com/divlook/semantic-release-config/issues"
+  },
+  "homepage": "https://github.com/divlook/semantic-release-config#readme",
   "keywords": [
     "semantic-release-config"
   ],
