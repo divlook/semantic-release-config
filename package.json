@@ -1,8 +1,8 @@
 {
   "name": "@divlook/semantic-release-config",
   "version": "1.0.3",
-  "private": true,
   "description": "semantic-release shareable configuration for me",
+  "main": "dist/release.config.js",
   "author": {
     "name": "divlook"
   },
@@ -26,7 +26,6 @@
     "build": "ts-node libs/genconfig.ts"
   },
   "dependencies": {
-    "@divlook/semantic-release-config": "link:dist",
     "@semantic-release/changelog": "^6.0.0",
     "@semantic-release/git": "^10.0.0",
     "conventional-changelog-conventionalcommits": "^4.6.1",

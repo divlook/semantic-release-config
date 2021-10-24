@@ -1,6 +1,5 @@
 import * as fs from 'fs'
-import { dist, root, uniqueMerge } from './utils'
-import * as pkg from '../package.json'
+import { dist, uniqueMerge } from './utils'
 
 const rules = require('@semantic-release/commit-analyzer/lib/default-release-rules')
 
@@ -129,27 +128,7 @@ if (process.env.GITLAB_TOKEN) {
 module.exports = config
 `
 
-const pkgPath = dist('package.json')
-
-const pkgData = JSON.stringify(
-    {
-        name: pkg.name,
-        version: pkg.version,
-        main: configName,
-        description: pkg.description,
-        author: pkg.author,
-        keywords: pkg.keywords,
-        publishConfig: pkg.publishConfig,
-        license: pkg.license,
-    },
-    null,
-    2
-)
-
 fs.writeFileSync(configPath, configData)
-fs.writeFileSync(pkgPath, pkgData)
-fs.copyFileSync(root('LICENSE'), dist('LICENSE'))
-fs.copyFileSync(root('README.md'), dist('README.md'))
 
 function getConfig() {
     return {

@@ -1,2 +1,2 @@
-extends: "@divlook/semantic-release-config"
+extends: "./dist/release.config.js"
 branches: "main"

@@ -21,11 +21,9 @@ jobs:
           cache: "pnpm"
       - run: pnpm install
       - run: pnpm build
-      - run: pnpm add ./dist
       - run: pnpm exec semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: pnpm rm @divlook/semantic-release-config
       - name: rebuild
         run: pnpm build
 
@@ -43,7 +41,7 @@ jobs:
         with:
           path: dist
           key: ${{ github.sha }}
-      - run: npm publish dist --access public
+      - run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
@@ -64,6 +62,6 @@ jobs:
         with:
           path: dist
           key: ${{ github.sha }}
-      - run: npm publish dist
+      - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
