@@ -1,6 +1,6 @@
 # README
 
-[semantic-release](https://github.com/semantic-release/semantic-release) shareable configuration for me
+[semantic-release](https://github.com/semantic-release/semantic-release) shareable configuration for divlook
 
 ## Plugins
 

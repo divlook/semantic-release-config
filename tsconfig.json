@@ -1,5 +1,9 @@
 {
     "compilerOptions": {
-        "allowJs": true
-    }
+        "allowJs": true,
+        "resolveJsonModule": true
+    },
+    "exclude": [
+        "**/*.js"
+    ]
 }

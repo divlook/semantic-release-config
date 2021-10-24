@@ -1,0 +1,16 @@
+{
+  "name": "@divlook/semantic-release-config",
+  "version": "1.0.0",
+  "main": "release.config.js",
+  "description": "semantic-release shareable configuration for divlook",
+  "author": {
+    "name": "divlook"
+  },
+  "keywords": [
+    "semantic-release-config"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT"
+}

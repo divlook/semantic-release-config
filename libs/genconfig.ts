@@ -1,5 +1,6 @@
-import * as path from 'path'
 import * as fs from 'fs'
+import { dist, root, uniqueMerge } from './utils'
+import * as pkg from '../package.json'
 
 const rules = require('@semantic-release/commit-analyzer/lib/default-release-rules')
 
@@ -110,20 +111,45 @@ const changelogTypes = Object.entries(sectionByType)
         } as ChangelogType
     })
 
-const filePath = path.resolve(__dirname, 'release.config.js')
+const configName = 'release.config.js'
 
-const fileData = `
-const GITHUB_TOKEN = process.env.GITHUB_TOKEN
+const configPath = dist(configName)
+
+const configData = `
 const config = ${JSON.stringify(getConfig(), null, 4)}
 
-if (GITHUB_TOKEN) {
+if (process.env.GITHUB_TOKEN) {
     config.plugins.push('@semantic-release/github')
+}
+
+if (process.env.GITLAB_TOKEN) {
+    config.plugins.push('@semantic-release/gitlab')
 }
 
 module.exports = config
 `
 
-fs.writeFileSync(filePath, fileData)
+const pkgPath = dist('package.json')
+
+const pkgData = JSON.stringify(
+    {
+        name: pkg.name,
+        version: pkg.version,
+        main: configName,
+        description: pkg.description,
+        author: pkg.author,
+        keywords: pkg.keywords,
+        publishConfig: pkg.publishConfig,
+        license: pkg.license,
+    },
+    null,
+    2
+)
+
+fs.writeFileSync(configPath, configData)
+fs.writeFileSync(pkgPath, pkgData)
+fs.copyFileSync(root('LICENSE'), dist('LICENSE'))
+fs.copyFileSync(root('README.md'), dist('README.md'))
 
 function getConfig() {
     return {
@@ -152,28 +178,5 @@ function getConfig() {
             ],
             '@semantic-release/git',
         ],
-        branches: 'main',
-        ci: false,
     }
-}
-
-function uniqueMerge<T>(key: string, ...arrs: T[][]) {
-    const before = Array<T>().concat(...arrs)
-    const next = Array<T>()
-
-    before.forEach((row) => {
-        const id = row[key]
-
-        if (id) {
-            const index = next.findIndex((nextRow) => nextRow[key] === id)
-
-            if (index !== -1) {
-                next.splice(index, 1)
-            }
-        }
-
-        next.push(row)
-    })
-
-    return next
 }

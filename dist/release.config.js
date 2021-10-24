@@ -1,5 +1,4 @@
 
-const GITHUB_TOKEN = process.env.GITHUB_TOKEN
 const config = {
     "plugins": [
         [
@@ -196,13 +195,15 @@ const config = {
             }
         ],
         "@semantic-release/git"
-    ],
-    "branches": "main",
-    "ci": false
+    ]
 }
 
-if (GITHUB_TOKEN) {
+if (process.env.GITHUB_TOKEN) {
     config.plugins.push('@semantic-release/github')
+}
+
+if (process.env.GITLAB_TOKEN) {
+    config.plugins.push('@semantic-release/gitlab')
 }
 
 module.exports = config
