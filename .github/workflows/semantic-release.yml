@@ -7,15 +7,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/cache@v2
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v3
         with:
           path: dist
           key: ${{ github.sha }}
       - uses: pnpm/action-setup@v2.0.1
         with:
           version: 6.17.2
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
           node-version: "lts/*"
           cache: "pnpm"
@@ -30,14 +30,14 @@ jobs:
     runs-on: ubuntu-latest
     continue-on-error: true
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           ref: main
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
           node-version: "lts/*"
           registry-url: https://registry.npmjs.org/
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         with:
           path: dist
           key: ${{ github.sha }}
@@ -53,14 +53,14 @@ jobs:
       contents: read
       packages: write
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           ref: main
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
           node-version: "lts/*"
           registry-url: https://npm.pkg.github.com/
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         with:
           path: dist
           key: ${{ github.sha }}
